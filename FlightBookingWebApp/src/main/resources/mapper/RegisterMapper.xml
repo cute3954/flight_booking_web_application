@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choi.booking.register.mapper.RegisterMapper">
+	<insert id="addUser" parameterType="com.choi.booking.login.DTO.UserVO">
+		INSERT INTO FB_USER 
+		VALUES (#{fb_userid}, #{fb_userpwd})
+	</insert>
+</mapper>
