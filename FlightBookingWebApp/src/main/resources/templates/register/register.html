@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:object="${registerForm}" th:action="@{/register}" method="post">
+		<div class="field">
+			<label for="fb_userid">id </label><span>必須 </span>
+			<input type="text" name="fb_userid" th:field="*{fb_userid}" th:class="${#fields.hasErrors('fb_userid')} ? 'error_msg'"/>
+			<p th:if="${#fields.hasErrors('fb_userid')}" th:errors="*{fb_userid}"></p>
+        </div>
+        <div class="field">
+	        <label for="fb_userpwd">password　</label><span>必須 </span>
+	        <input type="password" name="fb_userpwd" th:field="*{fb_userpwd}" th:class="${#fields.hasErrors('fb_userpwd')} ? 'error_msg'"/>
+        	<p th:if="${#fields.hasErrors('fb_userpwd')}" th:errors="*{fb_userpwd}"></p>
+        </div>
+        <div class="field">
+	        <label>name　</label><span>必須</span>
+	        <input type="text" name="fb_userfirstname" placeholder="first name" maxlength="20" th:field="*{fb_userfirstname}" th:class="${#fields.hasErrors('fb_userfirstname')} ? 'error_msg'"/> 
+	        <input type="text" name="fb_userlastname" placeholder="last name" maxlength="20" th:field="*{fb_userlastname}" th:class="${#fields.hasErrors('fb_userlastname')} ? 'error_msg'"/>
+        	<p th:if="${#fields.hasErrors('fb_userfirstname')}" th:errors="*{fb_userfirstname}"></p>
+        	<p th:if="${#fields.hasErrors('fb_userlastname')}" th:errors="*{fb_userlastname}"></p>
+        </div>
+        <div class="field">
+        	<label for="fb_userphonenumber">phone　</label><span>必須</span>
+        	<input type="text" name="fb_userphonenumber" th:field="*{fb_userphonenumber}" th:class="${#fields.hasErrors('fb_userphonenumber')} ? 'error_msg'"/>
+        	<p th:if="${#fields.hasErrors('fb_userphonenumber')}" th:errors="*{fb_userphonenumber}"></p>
+        </div>
+        <div class="field">
+        	<label for="fb_useremail">email　</label><span>必須</span>
+        	<input type="text" name="fb_useremail" maxlength="120" th:field="*{fb_useremail}" th:class="${#fields.hasErrors('fb_useremail')} ? 'error_msg'"/> 
+        	<p th:if="${#fields.hasErrors('fb_useremail')}" th:errors="*{fb_useremail}"></p>
+        </div>
+        <input type="submit" value="Sign up">
+    </form>
+</body>
+</html>

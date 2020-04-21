@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	main
+	<h1 th:text="${message}"></h1>
+	<sec:authorize access="isAuthenticated()">
+		<form th:action="@{/logout}" method="post">
+			<button type="submit">Logout</button>
+		</form>
+	</sec:authorize>
 </body>
 </html>

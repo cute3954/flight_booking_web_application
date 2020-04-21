@@ -3,6 +3,7 @@
 <mapper namespace="com.choi.booking.register.mapper.RegisterMapper">
 	<insert id="addUser" parameterType="com.choi.booking.login.DTO.UserVO">
 		INSERT INTO FB_USER 
-		VALUES (#{fb_userid}, #{fb_userpwd})
+		(FB_USERID, FB_USERPWD, FB_USERFIRSTNAME, FB_USERLASTNAME, FB_USERPHONENUMBER, FB_USEREMAIL)
+		VALUES (#{fb_userid}, #{fb_userpwd}, #{fb_userfirstname}, #{fb_userlastname}, #{fb_userphonenumber}, #{fb_useremail})
 	</insert>
 </mapper>

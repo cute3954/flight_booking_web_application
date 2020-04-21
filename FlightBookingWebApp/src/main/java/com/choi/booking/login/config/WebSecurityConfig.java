@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	UserDetailsService userDetailsService;
 	
-	// @Bean: メソッド単位で付。　@Confiqurationクラスに使用。
+	// @Bean: メソッド単位で付。　@Configurationクラスに使用。
 	// フォームの値を比較するDBから取得したいパスワードは暗号化されているので
 	// フォームの値も暗号化するために利用
 	@Bean
@@ -35,8 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
-	// configureメソッド(WebSecurity)
-	// 静的ファイル（image, css, javascript）を利用する際のリクエストまで弾いてしまわないための設定を行う。
+	/* 全体に対するセキュリティ設定 */
+	// 特定パス（image, css, javascriptなど静的リソース）のみセキュリティ設定を無効にする
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers(
@@ -46,32 +46,39 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 											);
 	}
 	
-	// configureメソッド(HttpSecurity)
-	// 認証・認可の処理の中でhttpリクエスト関連の部分についての設定を記述するためのメソッド
+	/* httpリクエスト関連のセキュリティ設定 */
+	// URLごとに異なるセキュリティ設定を行う
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// ログイン設定
 		http
-			.formLogin()
-				.loginPage("/login") // ログインページはコントローラを経由しないのでViewNameとの紐付けが必要
+			.authorizeRequests()
+				.antMatchers("/**").permitAll() // 全ての画面ですべてのユーザーがアクセス可（認証不要）
+				.anyRequest().authenticated() // 認証済みユーザーのみがリクエスト可
+				.and()
+			// ログイン
+			.formLogin() // form認証が必要なことを定義
+				.loginPage("/login") 
 				.loginProcessingUrl("/sign_in") // フォームのSubmitURL、このURLへリクエストが送られると認証処理が実行される
 				.usernameParameter("userid") // リクエストパラメータのname属性を明示
 				.passwordParameter("userpwd")
-				.defaultSuccessUrl("/") // ログインに成功した場合に移動するページのURLを指定
-				.permitAll();
-		// 会員登録機能実装時に追加
-		http
-			.authorizeRequests()
-				.antMatchers("/register").permitAll() // 会員登録画面ですべてのユーザーがアクセス可
-				.anyRequest().authenticated(); // 全てのURLリクエストは認証されているユーザーしかアクセスできないという記述
+				.defaultSuccessUrl("/main") // ログインに成功した場合に移動するページのURLを指定
+				.permitAll() // ログイン画面はすべてのユーザーがアクセス可（認証不要）
+				.and()
+			// ログアウト
+			.logout()
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/login");
 	}
 	
-	// AuthenticationProviderとかの設定。
+	/* 認証方法の実装の設定 */
 	// UserDetailsService、passwordEncoderをセットする
 	@Autowired
-    void configureAuthenticationManager(AuthenticationManagerBuilder auth) throws Exception {
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // 認証するユーザー
-		auth.userDetailsService(userDetailsService)
+		auth
+				.userDetailsService(userDetailsService)
 				// 入力値をbcryptでハッシュ化した値でパスワード認証を行う
             	.passwordEncoder(passwordEncoder());
     }

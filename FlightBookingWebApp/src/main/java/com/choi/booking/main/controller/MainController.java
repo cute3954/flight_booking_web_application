@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainController {
-	@RequestMapping("/")
+	@RequestMapping("/main")
 	private String showMain(Model model) {
-		// 現在のリクエストに紐づくAuthenticationを取得する
+		// 現在のリクエストに紐づく認証情報を取得
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userid = auth.getName();
-		model.addAttribute("userid", userid);
+		// ログインしてない場合、ログイン画面にリダイレクトさせる
+		if (userid == "anonymousUser") {
+			return "redirect:/login";
+		}
+		model.addAttribute("message", "Hello," + userid);
 		return "main";
 	}
 }
