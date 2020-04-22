@@ -6,6 +6,22 @@
 </head>
 <body>
 	<h1 th:text="${message}"></h1>
+	<form th:object="${flightTicketList}" th:action="@{/flight_searchlist}" method="get">
+		<label for="isroundtrip">
+			往復<input name="isroundtrip" type="radio" value="true" checked="checked"/>
+			片道<input name="isroundtrip" type="radio" value="false"/>
+		</label>
+		<br/>
+		出発　
+		<select name="fb_flightfrom_eng">
+			<option value="tokyo_h">東京（羽田）</option>
+		</select>
+		到着　
+		<select name="fb_flightto_eng">
+			<option value="nagoya_c">名古屋（中部）</option>
+		</select>
+		<button type="submit">検索する</button>
+	</form>
 	<sec:authorize access="isAuthenticated()">
 		<form th:action="@{/logout}" method="post">
 			<button type="submit">Logout</button>
