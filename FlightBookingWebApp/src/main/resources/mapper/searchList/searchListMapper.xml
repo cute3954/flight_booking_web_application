@@ -3,6 +3,6 @@
 <mapper namespace="com.choi.booking.flight.mapper.FlightMapper">
 	<select id="getSearchResult" parameterType="com.choi.booking.flight.DTO.FlightVO" resultType="com.choi.booking.flight.DTO.FlightVO">
 		SELECT * FROM FB_FLIGHT
-		WHERE FB_FLIGHTFROM_ENG=#{fb_flightfrom_eng} AND FB_FLIGHTTO_ENG=#{fb_flightto_eng}
+		WHERE FB_FLIGHTFROM_ENG=#{fb_flightfrom_eng} AND FB_FLIGHTTO_ENG=#{fb_flightto_eng} AND FB_FLIGHTDATE=#{fb_flightdate}
 	</select>
 </mapper>

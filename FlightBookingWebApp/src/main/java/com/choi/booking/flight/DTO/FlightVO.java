@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 public class FlightVO {
 	
 		private Timestamp fb_flightdate;
+		private Timestamp fb_flightdate_return;
 		private String fb_flightfrom;
 		private String fb_flightfrom_eng;
 	    private Time fb_flightfromtime;
@@ -24,6 +25,12 @@ public class FlightVO {
 		}
 		public void setFb_flightdate(Timestamp fb_flightdate) {
 			this.fb_flightdate = fb_flightdate;
+		}
+		public Timestamp getFb_flightdate_return() {
+			return fb_flightdate_return;
+		}
+		public void setFb_flightdate_return(Timestamp fb_flightdate_return) {
+			this.fb_flightdate_return = fb_flightdate_return;
 		}
 		public String getFb_flightfrom() {
 			return fb_flightfrom;

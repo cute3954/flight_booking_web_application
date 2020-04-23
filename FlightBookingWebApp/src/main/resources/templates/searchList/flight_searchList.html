@@ -7,6 +7,7 @@
 <body>
 	<table>
 		<tr>
+			<th></th>
 			<th>日付</th>
 			<th>出発</th>
 			<th>到着</th>
@@ -16,6 +17,7 @@
 			<th>価格</th>
 		</tr>
 		<tr th:each="FlightVO : ${flightList}">
+			<th><input type="radio" name="outbound_check" onclick="showReturnTicketList();"/></th>
 			<td th:text="${#dates.format(FlightVO.fb_flightdate, 'yyyy-MM-dd')}">日付</td>
 			<td th:text="${FlightVO.fb_flightfrom}">出発</td>
 			<td th:text="${FlightVO.fb_flightto}">到着</td>
@@ -26,7 +28,29 @@
 		</tr>
 	</table>
 	<div th:if="${isRoundTrip}">
-		往復ですよ～～
+		<table id="returnTicketList" style="display: none;">
+			<tr>
+				<th></th>
+				<th>日付</th>
+				<th>出発</th>
+				<th>到着</th>
+				<th>出発時間</th>
+				<th>到着時間</th>
+				<th>クラス</th>
+				<th>価格</th>
+			</tr>
+			<tr th:each="FlightVO : ${flightList_return}">
+				<th><input type="radio" name="return_check"/></th>
+				<td th:text="${#dates.format(FlightVO.fb_flightdate, 'yyyy-MM-dd')}">日付</td>
+				<td th:text="${FlightVO.fb_flightfrom}">出発</td>
+				<td th:text="${FlightVO.fb_flightto}">到着</td>
+				<td th:text="${#dates.format(FlightVO.fb_flightfromtime, 'HH:mm')}">出発時間</td>
+				<td th:text="${#dates.format(FlightVO.fb_flighttotime, 'HH:mm')}">到着時間</td>
+				<td th:text="${FlightVO.fb_flightclass}">クラス</td>
+				<td th:text="${FlightVO.fb_flightprice}">価格</td>
+			</tr>
+		</table>
 	</div>
+<script type="text/javascript" th:src="@{/js/roundTrip.js}"></script>
 </body>
 </html>
