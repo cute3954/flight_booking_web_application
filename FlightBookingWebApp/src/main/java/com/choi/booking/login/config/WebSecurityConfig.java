@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 /* Spring Security、認証・認可についての設定を記述したクラス */
 
@@ -23,6 +24,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	// @Autowired: フィールド単位で付与する
 	@Autowired
 	UserDetailsService userDetailsService;
+	
+	@Bean
+	MappingJackson2JsonView jsonView() {
+		return new MappingJackson2JsonView();
+	}
 	
 	// @Bean: メソッド単位で付。　@Configurationクラスに使用。
 	// フォームの値を比較するDBから取得したいパスワードは暗号化されているので
@@ -50,6 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// ログイン設定
 		http
+			.csrf().disable()
 			.authorizeRequests()
 				.antMatchers("/**").permitAll() // 全ての画面ですべてのユーザーがアクセス可（認証不要）
 				.anyRequest().authenticated() // 認証済みユーザーのみがリクエスト可

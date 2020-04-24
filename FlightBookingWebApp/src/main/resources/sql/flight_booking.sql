@@ -19,10 +19,12 @@ CREATE TABLE if not exists `fb_mybookinglist` (
 
 CREATE TABLE if not exists `fb_flight` (
   `fb_flightno` int auto_increment PRIMARY KEY,
-  `fb_flightdate` timestamp NOT NULL,
+  `fb_flightdate` date NOT NULL,
   `fb_flightfrom` varchar(50) NOT NULL,
+  `fb_flightfrom_eng` varchar(50) NOT NULL,
   `fb_flightfromtime` time NOT NULL,
   `fb_flightto` varchar(50) NOT NULL,
+  `fb_flightto_eng` varchar(50) NOT NULL,
   `fb_flighttotime` time NOT NULL,
   `fb_flightname` varchar(15) NOT NULL,
   `fb_flightequip` varchar(15) NOT NULL,

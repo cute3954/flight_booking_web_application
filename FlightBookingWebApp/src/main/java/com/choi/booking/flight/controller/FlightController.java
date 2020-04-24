@@ -1,6 +1,6 @@
 package com.choi.booking.flight.controller;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class FlightController {
 		if (fvo.getIsroundtrip()) {	
 			String flightFromEng = fvo.getFb_flightfrom_eng();
 			String flightToEng = fvo.getFb_flightto_eng();
-			Timestamp flightDateReturn = fvo.getFb_flightdate_return();
+			Date flightDateReturn = fvo.getFb_flightdate_return();
 			fvo.setFb_flightfrom_eng(flightToEng);
 			fvo.setFb_flightto_eng(flightFromEng);
 			fvo.setFb_flightdate(flightDateReturn);

@@ -1,12 +1,12 @@
 package com.choi.booking.flight.DTO;
 
+import java.sql.Date;
 import java.sql.Time;
-import java.sql.Timestamp;
 
 public class FlightVO {
 	
-		private Timestamp fb_flightdate;
-		private Timestamp fb_flightdate_return;
+		private Date fb_flightdate;
+		private Date fb_flightdate_return;
 		private String fb_flightfrom;
 		private String fb_flightfrom_eng;
 	    private Time fb_flightfromtime;
@@ -20,16 +20,16 @@ public class FlightVO {
 	    // 往復か片道か
 	    private boolean isroundtrip;
 	    
-		public Timestamp getFb_flightdate() {
+		public Date getFb_flightdate() {
 			return fb_flightdate;
 		}
-		public void setFb_flightdate(Timestamp fb_flightdate) {
+		public void setFb_flightdate(Date fb_flightdate) {
 			this.fb_flightdate = fb_flightdate;
 		}
-		public Timestamp getFb_flightdate_return() {
+		public Date getFb_flightdate_return() {
 			return fb_flightdate_return;
 		}
-		public void setFb_flightdate_return(Timestamp fb_flightdate_return) {
+		public void setFb_flightdate_return(Date fb_flightdate_return) {
 			this.fb_flightdate_return = fb_flightdate_return;
 		}
 		public String getFb_flightfrom() {
