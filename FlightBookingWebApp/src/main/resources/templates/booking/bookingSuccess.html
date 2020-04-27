@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<form th:action="@{/flight/booking}" method="post">
+	予約完了
 	<table>
 		<tr>
 			<th></th>
@@ -17,10 +17,9 @@
 			<th>クラス</th>
 			<th>価格</th>
 		</tr>
-		<tr th:each="FlightVO : ${flightList}">
+		<tr th:each="FlightVO : ${bookingList}">
 			<td>
-				<input type="radio" th:value="${FlightVO.fb_flightno}" id="fb_flightno" name="fb_flightno" class="outbound_check"/>
-				<input type="hidden" th:value="${isRoundTrip}" id="isroundtrip" name="isroundtrip">
+				<input type="hidden" th:value="${FlightVO.fb_flightno}" id="fb_flightno" name="fb_flightno"/>
 			</td>
 			<td th:text="${#dates.format(FlightVO.fb_flightdate, 'yyyy-MM-dd')}">日付</td>
 			<td th:text="${FlightVO.fb_flightfrom}">出発</td>
@@ -28,13 +27,8 @@
 			<td th:text="${#dates.format(FlightVO.fb_flightfromtime, 'HH:mm')}">出発時間</td>
 			<td th:text="${#dates.format(FlightVO.fb_flighttotime, 'HH:mm')}">到着時間</td>
 			<td th:text="${FlightVO.fb_flightclass}">クラス</td>
-			<td th:text="${FlightVO.fb_flightprice}">価格</td>
 		</tr>
 	</table>
-	<input type="submit" id="bookingBtn" value="予約する" disabled="disabled">
-</form>
-<!-- js -->
-<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-<script type="text/javascript" th:src="@{/js/bookingFlight.js}"></script>
+	<a href="/main">メイン画面へ</a>
 </body>
 </html>

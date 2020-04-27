@@ -56,6 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// ログイン設定
 		http
+			// ajaxを使うため、csrfの無効化
 			.csrf().disable()
 			.authorizeRequests()
 				.antMatchers("/**").permitAll() // 全ての画面ですべてのユーザーがアクセス可（認証不要）

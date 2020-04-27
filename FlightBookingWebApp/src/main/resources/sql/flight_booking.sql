@@ -9,7 +9,7 @@ CREATE TABLE if not exists `fb_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE if not exists `fb_mybookinglist` (
-  `fb_userno` int PRIMARY KEY,
+  `fb_userno` int,
   `fb_flightno` int,
    FOREIGN KEY(`fb_userno`)
 	REFERENCES `fb_user`(`fb_userno`),
@@ -33,7 +33,7 @@ CREATE TABLE if not exists `fb_flight` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE if not exists `fb_flightdetails` (
-  `fb_flightno` int PRIMARY KEY,
+  `fb_flightno` int,
   `fb_flightdetail` varchar(20) NOT NULL,
   FOREIGN KEY(`fb_flightno`)
 	REFERENCES `fb_flight`(`fb_flightno`)

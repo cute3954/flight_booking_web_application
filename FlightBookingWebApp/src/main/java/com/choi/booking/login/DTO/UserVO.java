@@ -7,6 +7,7 @@ import javax.validation.constraints.Size;
 
 public class UserVO {
 
+		private int fb_userno;
 		@NotBlank(message = "IDを入力してください")
 		@Size(min = 8, max = 15, message = "IDは8～15文字以内で入力してください")
 		private String fb_userid;
@@ -29,6 +30,12 @@ public class UserVO {
 		@Email(message = "メールを正しく入力してください")
 		private String fb_useremail;
 
+		public int getFb_userno() {
+			return fb_userno;
+		}
+		public void setFb_userno(int fb_userno) {
+			this.fb_userno = fb_userno;
+		}
 		public String getFb_userid() {
 			return fb_userid;
 		}

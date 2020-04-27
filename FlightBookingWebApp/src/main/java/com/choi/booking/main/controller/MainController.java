@@ -6,12 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.choi.booking.calendar.DTO.CalendarVO;
-
 @Controller
 public class MainController {
 	@RequestMapping("/main")
-	private String showMain(Model model, CalendarVO dateData) {
+	private String showMain(Model model) {
 		// 現在のリクエストに紐づく認証情報を取得
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userid = auth.getName();

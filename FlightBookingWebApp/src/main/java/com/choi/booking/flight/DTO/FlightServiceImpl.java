@@ -18,4 +18,14 @@ public class FlightServiceImpl {
 	public List<FlightVO> getSearchResult(FlightVO fvo) {	
 		return flightMapper.getSearchResult(fvo);
 	}
+	
+	// 予約リストに追加
+	public void insertBookingList(MyBookingListVO mvo) {
+		flightMapper.insertBookingList(mvo);
+	}
+	
+	// 予約したチケットの情報を取得
+	public List<FlightVO> getMyBookingList(MyBookingListVO mvo) {
+		return flightMapper.getMyBookingList(mvo);
+	}
 }

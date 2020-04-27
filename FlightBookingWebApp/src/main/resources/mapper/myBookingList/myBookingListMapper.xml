@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choi.booking.flight.mapper.FlightMapper">
+	<insert id="insertBookingList" parameterType="com.choi.booking.flight.DTO.MyBookingListVO">
+		INSERT INTO FB_MYBOOKINGLIST
+		VALUES (#{fb_userno}, #{fb_flightno})
+	</insert>
+	<select id="getMyBookingList" parameterType="com.choi.booking.flight.DTO.MyBookingListVO" resultType="com.choi.booking.flight.DTO.FlightVO">
+		SELECT * FROM FB_FLIGHT
+		WHERE FB_FLIGHT.FB_FLIGHTNO IN  (
+			SELECT FB_MYBOOKINGLIST.FB_FLIGHTNO
+			FROM FB_MYBOOKINGLIST
+			WHERE FB_USERNO = #{fb_userno} AND FB_FLIGHTNO = #{fb_flightno}
+		)	
+	</select>
+</mapper>

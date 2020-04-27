@@ -3,8 +3,10 @@ package com.choi.booking.flight.DTO;
 import java.sql.Date;
 import java.sql.Time;
 
+/* 航空券情報 */
 public class FlightVO {
 	
+		private int fb_flightno;
 		private Date fb_flightdate;
 		private Date fb_flightdate_return;
 		private String fb_flightfrom;
@@ -20,6 +22,12 @@ public class FlightVO {
 	    // 往復か片道か
 	    private boolean isroundtrip;
 	    
+		public int getFb_flightno() {
+			return fb_flightno;
+		}
+		public void setFb_flightno(int fb_flightno) {
+			this.fb_flightno = fb_flightno;
+		}
 		public Date getFb_flightdate() {
 			return fb_flightdate;
 		}
