@@ -45,8 +45,8 @@ public class FlightController {
 		return mav;
 	}
 	
-	/* 航空券予約 */
-	@RequestMapping("/flight/booking")
+	/* 決済後の航空券予約画面 */
+	@RequestMapping("/flight/booking-success")
 	public ModelAndView bookingFlightTickets(@RequestParam("fb_flightno") int fb_flightno, 
 																	@RequestParam("isroundtrip") boolean isroundtrip, 
 																	@AuthenticationPrincipal DbUserDetails user,

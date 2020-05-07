@@ -2,10 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices. -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
 <title>Insert title here</title>
 </head>
 <body>
-<form th:action="@{/flight/booking}" method="post">
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
 	<table>
 		<tr>
 			<th></th>
@@ -17,10 +19,10 @@
 			<th>クラス</th>
 			<th>価格</th>
 		</tr>
-		<tr th:each="FlightVO : ${flightList}">
-			<td>
-				<input type="radio" th:value="${FlightVO.fb_flightno}" id="fb_flightno" name="fb_flightno" class="outbound_check"/>
-				<input type="hidden" th:value="${isRoundTrip}" id="isroundtrip" name="isroundtrip">
+		<tr th:each="FlightVO : ${flightList}" th:class="|flightno_${FlightVO.fb_flightno}|">
+			<td class="req">
+				<input type="radio" th:value="${FlightVO.fb_flightno}" name="fb_flightno" class="fb_flightno outbound_check"/>
+				<input type="hidden" th:value="${isRoundTrip}" class="isroundtrip" name="isroundtrip">
 			</td>
 			<td th:text="${#dates.format(FlightVO.fb_flightdate, 'yyyy-MM-dd')}">日付</td>
 			<td th:text="${FlightVO.fb_flightfrom}">出発</td>
@@ -28,9 +30,16 @@
 			<td th:text="${#dates.format(FlightVO.fb_flightfromtime, 'HH:mm')}">出発時間</td>
 			<td th:text="${#dates.format(FlightVO.fb_flighttotime, 'HH:mm')}">到着時間</td>
 			<td th:text="${FlightVO.fb_flightclass}">クラス</td>
-			<td th:text="${FlightVO.fb_flightprice}">価格</td>
+			<td th:text="${FlightVO.fb_flightprice}" class="_price">価格</td>
 		</tr>
 	</table>
+	<!-- paypal決済を行うための値を設定 -->
+	<input type="hidden" name="cmd" value="_xclick">
+	<input type="hidden" name="business" value="sb-43d6ly1595870@business.example.com">
+	<input type="hidden" name="currency_code" value="JPY">
+	<input type="hidden" name="amount" id="jpyPrice" value="100">
+	<input type="hidden" class="returnUrl" name="return" value="http://localhost:8080/flight/booking-success?">
+	<input type="hidden" class="returnUrl" name="notify_url" value="http://localhost:8080/flight/booking-success?">
 	<input type="submit" id="bookingBtn" value="予約する" disabled="disabled">
 </form>
 <!-- js -->
