@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -15,7 +15,6 @@
 			<th>出発時間</th>
 			<th>到着時間</th>
 			<th>クラス</th>
-			<th>価格</th>
 		</tr>
 		<tr th:each="FlightVO : ${bookingList}">
 			<td>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- ここも後程片付ける -->
+	<div th:if ="${bookingCount > 0}">
+		<h3 th:text="|${bookingCount}件|">予約件数</h3>
+		<table>
+			<tr>
+				<th></th>
+				<th>日付</th>
+				<th>出発</th>
+				<th>到着</th>
+				<th>出発時間</th>
+				<th>到着時間</th>
+				<th>クラス</th>
+				<th></th>
+			</tr>
+			<tr th:each="FlightVO : ${bookingList}">
+				<td>
+					<input type="hidden" th:value="${FlightVO.fb_flightno}" id="fb_flightno" name="fb_flightno"/>
+				</td>
+				<td th:text="${#dates.format(FlightVO.fb_flightdate, 'yyyy-MM-dd')}">日付</td>
+				<td th:text="${FlightVO.fb_flightfrom}">出発</td>
+				<td th:text="${FlightVO.fb_flightto}">到着</td>
+				<td th:text="${#dates.format(FlightVO.fb_flightfromtime, 'HH:mm')}">出発時間</td>
+				<td th:text="${#dates.format(FlightVO.fb_flighttotime, 'HH:mm')}">到着時間</td>
+				<td th:text="${FlightVO.fb_flightclass}">クラス</td>
+				<td><a th:href="|/mypage/cancelBooking?fb_flightno=${FlightVO.fb_flightno}|">取り消し</a></td>
+			</tr>
+		</table>
+	</div>
+	<div th:unless ="${bookingCount > 0}">
+		<h5>	
+			以下をご確認ください。<br/>
+			国内線個人運賃のご予約はございません。
+		</h5>
+	</div>
+	<a href="javascript:history.back();">前のページに戻る</a>
+</body>
+</html>
