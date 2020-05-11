@@ -1,34 +1,70 @@
-<form th:object="${flightTicketList}" th:action="@{/flight/searchlist}" method="get">
-	<label for="isroundtrip" class="isRoundTripRadio">
-		往復<input id="rt_true" name="isroundtrip" type="radio" value="true" checked="checked"/>
-		片道<input id="rt_false"name="isroundtrip" type="radio" value="false"/>
-	</label>
-	<br/>
-	出発
-	<select name="fb_flightfrom_eng">
-		<option value="tokyo_h">東京（羽田）</option>
-		<option value="tokyo_n">東京（成田）</option>
-	</select>
-	到着
-	<select name="fb_flightto_eng">
-		<option value="nagoya_c">名古屋（中部）</option>
-		<option value="hokkaido_c">北海道（千歳）</option>
-	</select>
-	<br/>
-	<div>
-		行き
-		<input type="text" placeholder="日付" name="fb_flightdate" id="fb_flightdate"/>
-		<!-- Modal -->
-		<div th:include="searchList/calendar/outbound">outbound calendar</div>
+<div class="section-center">
+	<div class="container">
+		<div class="row" style="display:block;">
+			<div class="booking-form">
+				<form th:object="${flightTicketList}" th:action="@{/flight/searchlist}" method="get">
+					<div class="form-group">
+						<div class="form-checkbox">
+							<label for="isroundtrip" class="roundtrip">
+								<input id="rt_true" name="isroundtrip" type="radio" value="true" checked="checked"/>
+								<span></span>往復
+							</label>
+							<label for="isroundtrip" class="one-way">
+								<input id="rt_false" name="isroundtrip" type="radio" value="false"/>
+								<span></span>片道
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<span class="form-label">出発</span>
+								<select name="fb_flightfrom_eng">
+									<option value="tokyo_h">東京（羽田）</option>
+									<option value="tokyo_n">東京（成田）</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<span class="form-label">到着</span>
+								<select name="fb_flightto_eng">
+									<option value="nagoya_c">名古屋（中部）</option>
+									<option value="hokkaido_c">北海道（千歳）</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<span class="form-label">行き</span>
+								<input class="form-control" type="text" placeholder="日付" name="fb_flightdate" id="fb_flightdate"/>
+								<!-- Modal -->
+								<div th:include="searchList/calendar/outbound">outbound calendar</div>
+							</div>
+						</div>
+						<div id="returnDate" class="col-md-6">
+							<div class="form-group">
+								<span class="form-label">帰り</span>
+								<!-- エラーが起こるため、一旦コメントアウト  -->
+								<!-- <input type="text" placeholder="日付" name="fb_flightdate_return" id="fb_flightdate_return"/>
+								Modal
+								<div class="modal fade" id="calendar_return" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
+										aria-hidden="true" th:include="searchList/calendar/return" style="display:none;">return calendar</div>
+								<br/> -->
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-btn">
+								<button class="submit-btn" type="submit">検索する</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
-	<div id="returnDate">
-		帰り
-		<!-- エラーが起こるため、一旦コメントアウト  -->
-		<!-- <input type="text" placeholder="日付" name="fb_flightdate_return" id="fb_flightdate_return"/>
-		Modal
-		<div class="modal fade" id="calendar_return" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
-				aria-hidden="true" th:include="searchList/calendar/return" style="display:none;">return calendar</div>
-		<br/> -->
-	</div>
-	<button type="submit">検索する</button>
-</form>
+</div>

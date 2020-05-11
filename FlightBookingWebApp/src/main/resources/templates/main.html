@@ -2,18 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!-- css -->
+<link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
+<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
-	<h1 th:text="${message}"></h1>
-	<div th:include="searchList/search"></div>
-	<a href="/mypage">ご予約後の確認・変更</a>
-	<sec:authorize access="isAuthenticated()">
-		<form th:action="@{/logout}" method="post">
-			<button type="submit">Logout</button>
-		</form>
-	</sec:authorize>
+	<div class="navbar navbar-inverse navbar-static-top" style="margin-bottom: 0">
+	  <div class="container">
+	    <a href="/main" class="navbar-brand">Home</a>
+	    <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	    <div class="collapse navbar-collapse navHeaderCollapse">
+	     	<ul class="nav navbar-nav navbar-right text-center">
+		        <li class="active"><a href="/mypage">ご予約後の確認・変更</a></li>
+		        <li calass="dropdown">
+		          <a th:text="${message}" href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="">facebook</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+	      <sec:authorize access="isAuthenticated()">
+				<form th:action="@{/logout}" method="post">
+					<button type="submit">Logout</button>
+				</form>
+			</sec:authorize>
+	    </div>
+	  </div>
+	</div>		
+	<div id ="booking" class="section" th:include="searchList/search"></div>
 <!-- js -->
 <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript" th:src="@{/js/showCalendar.js}"></script>

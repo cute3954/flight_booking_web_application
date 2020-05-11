@@ -2,38 +2,92 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign Up</title>
+<!-- css -->
+<link rel="icon" type="image/png" th:href="@{/img/icons/favicon.ico}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/vendor/animate/animate.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/vendor/css-hamburgers/hamburgers.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/vendor/animsition/css/animsition.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/vendor/select2/select2.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/vendor/daterangepicker/daterangepicker.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 </head>
 <body>
-	<form th:object="${registerForm}" th:action="@{/register}" method="post">
-		<div class="field">
-			<label for="fb_userid">id </label><span>必須 </span>
-			<input type="text" name="fb_userid" th:field="*{fb_userid}" th:class="${#fields.hasErrors('fb_userid')} ? 'error_msg'"/>
-			<p th:if="${#fields.hasErrors('fb_userid')}" th:errors="*{fb_userid}"></p>
-        </div>
-        <div class="field">
-	        <label for="fb_userpwd">password　</label><span>必須 </span>
-	        <input type="password" name="fb_userpwd" th:field="*{fb_userpwd}" th:class="${#fields.hasErrors('fb_userpwd')} ? 'error_msg'"/>
-        	<p th:if="${#fields.hasErrors('fb_userpwd')}" th:errors="*{fb_userpwd}"></p>
-        </div>
-        <div class="field">
-	        <label>name　</label><span>必須</span>
-	        <input type="text" name="fb_userfirstname" placeholder="first name" maxlength="20" th:field="*{fb_userfirstname}" th:class="${#fields.hasErrors('fb_userfirstname')} ? 'error_msg'"/> 
-	        <input type="text" name="fb_userlastname" placeholder="last name" maxlength="20" th:field="*{fb_userlastname}" th:class="${#fields.hasErrors('fb_userlastname')} ? 'error_msg'"/>
-        	<p th:if="${#fields.hasErrors('fb_userfirstname')}" th:errors="*{fb_userfirstname}"></p>
-        	<p th:if="${#fields.hasErrors('fb_userlastname')}" th:errors="*{fb_userlastname}"></p>
-        </div>
-        <div class="field">
-        	<label for="fb_userphonenumber">phone　</label><span>必須</span>
-        	<input type="text" name="fb_userphonenumber" th:field="*{fb_userphonenumber}" th:class="${#fields.hasErrors('fb_userphonenumber')} ? 'error_msg'"/>
-        	<p th:if="${#fields.hasErrors('fb_userphonenumber')}" th:errors="*{fb_userphonenumber}"></p>
-        </div>
-        <div class="field">
-        	<label for="fb_useremail">email　</label><span>必須</span>
-        	<input type="text" name="fb_useremail" maxlength="120" th:field="*{fb_useremail}" th:class="${#fields.hasErrors('fb_useremail')} ? 'error_msg'"/> 
-        	<p th:if="${#fields.hasErrors('fb_useremail')}" th:errors="*{fb_useremail}"></p>
-        </div>
-        <input type="submit" value="Sign up">
-    </form>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-45 p-r-45 p-t-55 p-b-55">
+				<form th:object="${registerForm}" th:action="@{/register}" method="post">
+					<div class="field">
+						<span class="txt1 p-b-11">id  </span><span class="txt2 p-b-11">必須 </span>
+						<div class="wrap-input100 validate-input m-b-20">
+							<input type="text" name="fb_userid" th:field="*{fb_userid}" th:class="|input100 ${#fields.hasErrors('fb_userid')} ? 'error_msg'|"/>
+							<span class="focus-input100"></span>
+							<p th:if="${#fields.hasErrors('fb_userid')}" th:errors="*{fb_userid}"></p>
+			        	</div>
+			        </div>
+			        <div class="field">
+				        <span class="txt1 p-b-11">password  </span><span class="txt2 p-b-11">必須 </span>
+				        <div class="wrap-input100 validate-input m-b-20">
+					        <input type="password" name="fb_userpwd" th:field="*{fb_userpwd}" th:class="|input100 ${#fields.hasErrors('fb_userpwd')} ? 'error_msg'|"/>
+				        	<span class="focus-input100"></span>
+				        	<p th:if="${#fields.hasErrors('fb_userpwd')}" th:errors="*{fb_userpwd}"></p>
+			        	</div>
+			        </div>
+			        <div class="field">
+				        <span class="txt1 p-b-11">name  </span><span class="txt2 p-b-11">必須</span>
+				        <div class="wrap-input100 validate-input m-b-20">
+					        <input type="text" name="fb_userfirstname" placeholder="first name" maxlength="20" th:field="*{fb_userfirstname}" th:class="|input100 ${#fields.hasErrors('fb_userfirstname')} ? 'error_msg'|"/> 
+				        	<span class="focus-input100"></span>
+			        	</div>
+			        	<div class="wrap-input100 validate-input m-b-20">
+					        <input type="text" name="fb_userlastname" placeholder="last name" maxlength="20" th:field="*{fb_userlastname}" th:class="|input100 ${#fields.hasErrors('fb_userlastname')} ? 'error_msg'|"/>
+				        	<span class="focus-input100"></span>
+				        	<p th:if="${#fields.hasErrors('fb_userfirstname')}" th:errors="*{fb_userfirstname}"></p>
+				        	<p th:if="${#fields.hasErrors('fb_userlastname')}" th:errors="*{fb_userlastname}"></p>
+			        	</div>
+			        </div>
+			        <div class="field">
+			        	<span class="txt1 p-b-11">phone  </span><span class="txt2 p-b-11">必須</span>
+			        	<div class="wrap-input100 validate-input m-b-20">
+				        	<input type="text" name="fb_userphonenumber" th:field="*{fb_userphonenumber}" th:class="|input100 ${#fields.hasErrors('fb_userphonenumber')} ? 'error_msg'|"/>
+				        	<span class="focus-input100"></span>
+				        	<p th:if="${#fields.hasErrors('fb_userphonenumber')}" th:errors="*{fb_userphonenumber}"></p>
+			        	</div>
+			        </div>
+			        <div class="field">
+			        	<span class="txt1 p-b-11">email  </span><span class="txt2 p-b-11">必須</span>
+			        	<div class="wrap-input100 validate-input m-b-20">
+				        	<input type="text" name="fb_useremail" maxlength="120" th:field="*{fb_useremail}" th:class="|input100 ${#fields.hasErrors('fb_useremail')} ? 'error_msg'|"/> 
+				        	<span class="focus-input100"></span>
+				        	<p th:if="${#fields.hasErrors('fb_useremail')}" th:errors="*{fb_useremail}"></p>
+			        	</div>
+			        </div>
+			        <div class="container-login100-form-btn">
+				        <button class="login100-form-btn" type="submit">
+				        	Sign Up
+				        </button>
+				        <a href="javascript:history.back();">
+				        	前のページに戻る
+				        </a>
+			        </div>
+			    </form>
+			</div>
+		</div>
+	</div>
+<!-- js -->
+<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendor/select2/select2.min.js}"></script>
+<script th:src="@{/vendor/daterangepicker/moment.min.js}"></script>
+<script th:src="@{/vendor/daterangepicker/daterangepicker.js}"></script>
+<script th:src="@{/vendor/countdowntime/countdowntime.js}"></script>
+<script th:src="@{/js/main.js}"></script>
 </body>
 </html>
